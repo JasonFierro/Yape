@@ -1,0 +1,34 @@
+<assembly>
+    <id>aws-devicefarm</id>
+    <!-- Genera un zip que contiene los ficheros necesarios -->
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <!-- Se añaden las dependencias necesarias al paquete lib -->
+    <dependencySets>
+        <dependencySet>
+           <scope>test</scope>
+            <includes>
+                <include>*:jar:*</include>
+            </includes>
+            <outputDirectory>/dependecy-jars</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!--
+            Se añade script de arranque en la raiz del directorio. Los scripts
+            estan locaizados en src/main/scripts siguiendo la convencion especificada
+            por maven.
+        -->
+        <fileSet>
+            <directory>${project.basedir}/target</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>*-test.jar</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

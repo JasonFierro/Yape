@@ -1,0 +1,14 @@
+{
+  "name": "cucumber_selenium",
+  "version": "1.0.0",
+  "description": "Test report",
+  "main": "index.js",
+  "scripts": {
+    "report": "node index.js"
+  },
+  "author": "Jason Fierro",
+  "license": "ISC",
+  "devDependencies": {
+    "multiple-cucumber-html-reporter": "^1.21.6"
+  }
+}
