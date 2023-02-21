@@ -149,7 +149,7 @@ public class auth {
     public void HealthCheck() throws IOException {
         loadProperty.load(new FileReader("./params.properties"));
         ping = loadProperty.getProperty("HealthCheck");
-        int statusPing = given().when().get(ping).statusCode();
+        ValidatableResponse statusPing = given().when().get(ping).then().statusCode(201).body(containsString("Created"));
         System.out.println(statusPing);
         ResponsePing = given().when().get(ping).then().log().ifValidationFails().statusCode(201);
         System.out.println(ResponsePing);

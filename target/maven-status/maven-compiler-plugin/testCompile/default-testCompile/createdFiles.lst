@@ -1,0 +1,11 @@
+runner\Testrunner.class
+seleniumgluecode\infoDefinition.class
+pom\BasePage.class
+pom\selectHotelPage.class
+pom\searchPage.class
+seleniumgluecode\selectHotelDefinition.class
+pom\infoPage.class
+seleniumgluecode\searchdefinition.class
+seleniumgluecode\Hooks.class
+seleniumgluecode\TestBase.class
+RestApi\auth.class
