@@ -15,7 +15,11 @@ public class infoDefinition extends TestBase{
 
     @Then("^Ingresar tarjeta de credito \"([^\"]*)\" fecha de expiracion y validar errores \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
     public void ingresarTarjetaDeCreditoFechaDeExpiracionYValidarErrores(String tc, String te, String texto, String mensajeErrorTarjeta, String mensajeErrorTCExpiracion) throws Throwable {
-        infoPage.finalizarBooking(texto,tc,te,mensajeErrorTarjeta,mensajeErrorTCExpiracion);
+        infoPage.finalizarBookingValidacionErrores(texto,tc,te,mensajeErrorTarjeta,mensajeErrorTCExpiracion);
     }
 
+    @Then("^Ingresar tarjeta de credito \"([^\"]*)\" fecha de expiracion \"([^\"]*)\" \"([^\"]*)\"$")
+    public void ingresarTarjetaDeCreditoFechaDeExpiracion(String tc, String te, String texto) throws Throwable {
+        infoPage.finalizarBooking(texto,tc,te);
+    }
 }

@@ -3,47 +3,220 @@
     "line": 1,
     "elements": [
       {
-        "line": 8,
-        "name": "Crear Booking",
+        "line": 40,
+        "name": "Validar los errores al momento de ingresar datos incorrectos de la tarjeta",
         "description": "",
-        "id": "probar-api-testing-restful-booker-contiene-end-points-que-permiten-crear,-leer,-actualizar-y-eliminar-reservas;crear-booking;;2",
+        "id": "realizar-una-reserva-o-alojamiento-en-la-aplicación-movil-booking-con-una-habitación-2-personas-adultas-y-un-niño;validar-los-errores-al-momento-de-ingresar-datos-incorrectos-de-la-tarjeta;;2",
         "type": "scenario",
         "keyword": "Scenario Outline",
         "steps": [
           {
             "result": {
-              "duration": 5387864900,
+              "duration": 31675692600,
               "status": "passed"
             },
-            "line": 5,
-            "name": "Ejecutar el servicio CreateBooking y validar el codigo estado \"200\"",
+            "line": 29,
+            "name": "Ingresar al sitio Booking",
+            "match": {
+              "location": "searchdefinition.ingresarAlSitioBooking()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 19886649400,
+              "status": "passed"
+            },
+            "line": 30,
+            "name": "Buscar la ciudad \"CUSCO\"",
             "match": {
               "arguments": [
                 {
-                  "val": "200",
-                  "offset": 63
+                  "val": "CUSCO",
+                  "offset": 18
                 }
               ],
-              "location": "crearBookDefinition.ejecutarElServicioCreateBookingYValidarElCodigoEstado(String)"
+              "location": "searchdefinition.buscarLaCiudad(String)"
+            },
+            "matchedColumns": [
+              1
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 8452648600,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "Agregar fechas ida y vuelta",
+            "match": {
+              "location": "searchdefinition.agregarFechasIdaYVuelta()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 18822588400,
+              "status": "passed"
+            },
+            "line": 32,
+            "name": "Seleccionar habitacion niño de cinco anios",
+            "match": {
+              "location": "searchdefinition.seleccionarHabitacionNiñoDeCincoAnios()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 10827154300,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "Seleccionar hotel \"US$2,468\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "US$2,468",
+                  "offset": 19
+                }
+              ],
+              "location": "selectHotelDefinition.seleccionarHotel(String)"
             },
             "matchedColumns": [
               0
             ],
-            "keyword": "Given "
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7730178400,
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "Seleccionar habitaciones \"US$2,468\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "US$2,468",
+                  "offset": 26
+                }
+              ],
+              "location": "selectHotelDefinition.seleccionarHabitaciones(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5132405600,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "Reservar paquete",
+            "match": {
+              "location": "selectHotelDefinition.reservarPaquete()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 47494794000,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "Ingresar informacion \"US$2,468\" \"cll 131c\" \"111111\" \"Los Angeles\" \"3162534469\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "US$2,468",
+                  "offset": 22
+                },
+                {
+                  "val": "cll 131c",
+                  "offset": 33
+                },
+                {
+                  "val": "111111",
+                  "offset": 44
+                },
+                {
+                  "val": "Los Angeles",
+                  "offset": 53
+                },
+                {
+                  "val": "3162534469",
+                  "offset": 67
+                }
+              ],
+              "location": "infoDefinition.ingresarInformacion(String,String,String,String,String)"
+            },
+            "matchedColumns": [
+              0,
+              2,
+              3,
+              4,
+              6
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14896146900,
+              "error_message": "org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.\nFor documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element\nBuild info: version: \u00274.8.1\u0027, revision: \u00278ebccac989\u0027\nSystem info: os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_111\u0027\nDriver info: io.appium.java_client.android.AndroidDriver\nCommand: [f6f7018c-65f0-4b9f-b53f-40ec93519a75, findElement {using\u003did, value\u003dcom.booking:id/title}]\nCapabilities {appium:app: C:\\Users\\jason\\OneDrive\\Doc..., appium:appActivity: com.booking.startup.HomeAct..., appium:appPackage: com.booking, appium:databaseEnabled: false, appium:desired: {app: C:\\Users\\jason\\OneDrive\\Doc..., appActivity: com.booking.startup.HomeAct..., appPackage: com.booking, deviceName: Pixel 2, noReset: false, platformName: android, platformVersion: 11, udid: emulator-5554}, appium:deviceApiLevel: 30, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone_x86, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x1920, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: false, appium:pixelRatio: 2.625, appium:platformVersion: 11, appium:statBarHeight: 63, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 1731, left: 0, top: 63, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}\nSession ID: f6f7018c-65f0-4b9f-b53f-40ec93519a75\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)\r\n\tat io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:262)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)\r\n\tat pom.BasePage.textEquals(BasePage.java:254)\r\n\tat pom.infoPage.finalizarBookingValidacionErrores(infoPage.java:104)\r\n\tat seleniumgluecode.infoDefinition.ingresarTarjetaDeCreditoFechaDeExpiracionYValidarErrores(infoDefinition.java:18)\r\n\tat ✽.Then Ingresar tarjeta de credito \"54444444444403564\" fecha de expiracion y validar errores \"11/4\" \"US$2,468\" \"Card number is invalid\" \"Please enter a valid year\"(reservaBooking.feature:37)\r\n",
+              "status": "failed"
+            },
+            "line": 37,
+            "name": "Ingresar tarjeta de credito \"54444444444403564\" fecha de expiracion y validar errores \"11/4\" \"US$2,468\" \"Card number is invalid\" \"Please enter a valid year\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "54444444444403564",
+                  "offset": 29
+                },
+                {
+                  "val": "11/4",
+                  "offset": 87
+                },
+                {
+                  "val": "US$2,468",
+                  "offset": 94
+                },
+                {
+                  "val": "Card number is invalid",
+                  "offset": 105
+                },
+                {
+                  "val": "Please enter a valid year",
+                  "offset": 130
+                }
+              ],
+              "location": "infoDefinition.ingresarTarjetaDeCreditoFechaDeExpiracionYValidarErrores(String,String,String,String,String)"
+            },
+            "matchedColumns": [
+              0,
+              7,
+              8,
+              9,
+              10
+            ],
+            "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "line": 3,
-            "name": "@Create"
+            "line": 27,
+            "name": "@prueba"
           }
         ]
       }
     ],
-    "name": "Probar API Testing RestFul-Booker contiene end-points que permiten Crear, Leer, Actualizar y Eliminar reservas",
-    "description": "",
-    "id": "probar-api-testing-restful-booker-contiene-end-points-que-permiten-crear,-leer,-actualizar-y-eliminar-reservas",
+    "name": "Realizar una reserva o alojamiento en la aplicación movil Booking con una habitación 2 personas adultas y un niño",
+    "description": "de cinco años se debe validar el valor hasta el final de la compra",
+    "id": "realizar-una-reserva-o-alojamiento-en-la-aplicación-movil-booking-con-una-habitación-2-personas-adultas-y-un-niño",
     "keyword": "Feature",
-    "uri": "booker.feature"
+    "uri": "reservaBooking.feature"
   }
 ]

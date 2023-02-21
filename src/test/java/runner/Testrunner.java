@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/features/",
         glue = {"seleniumgluecode"},
         plugin = {"json:Report/Test/cucumber_report.json"},
-        tags = {"@Create"}
+        tags = {"@prueba"}
 )
 public class Testrunner {
     // Para los reportes es necesario tener instalado NodeJS en su PC

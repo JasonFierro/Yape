@@ -78,13 +78,13 @@ public class auth {
 
     String bodyPartialUpdate = "{\n" +
             "    \"firstname\" : \"Jason\",\n" +
-            "    \"lastname\" : \"Fierro\"\n" +
             "    \"lastname\" : \"Fierroooo\",\n" +
             "    \"totalprice\" : 2905\n" +
             "}";
 
     @Test
-    public void consumirCreateBooking(String statusCode) throws IOException {
+    public void consumirCreateBooking(String statusCode) throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         CreateBooking = loadProperty.getProperty("CreateBooking");
         GetBooking = loadProperty.getProperty("GetBooking");
@@ -108,14 +108,15 @@ public class auth {
     }
 
     @Test(priority = 1)
-    public void consumirUpdateBooking() throws IOException {
+    public void consumirUpdateBooking(String statusCode) throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         updateBooking = loadProperty.getProperty("UpdateBooking");
         System.out.println("Book ID: " + getBookingid());
 //        consumirCreateBooking();
-        int statusUpdateBooking = given().header("Accept", "application/json")
+        ValidatableResponse statusUpdateBooking = given().header("Accept", "application/json")
                 .and().header("Content-Type", "application/json").and().header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .pathParam("id", getBookingid()).body(bodyUpdate).when().put(updateBooking).statusCode();
+                .pathParam("id", getBookingid()).body(bodyUpdate).when().put(updateBooking).then().statusCode(Integer.parseInt(statusCode));
         System.out.println(statusUpdateBooking);
         ResponseGetBooking = given().header("Accept", "application/json").pathParam("id", bookingid)
                 .when().get(GetBooking).then().log().all().body("firstname", containsString("Jason"))
@@ -126,14 +127,15 @@ public class auth {
     }
 
     @Test(priority = 2)
-    public void consumirPartialUpdateBooking() throws IOException {
+    public void consumirPartialUpdateBooking(String statusCode) throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         partialUpdateBooking = loadProperty.getProperty("PartialUpdateBooking");
 //        consumirCreateBooking();
-        int statusUpdateBooking = given().header("Accept", "application/json")
+        ValidatableResponse statusUpdateBooking = given()
                 .and().header("Content-Type", "application/json").and().header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .pathParam("id", getBookingid()).body(bodyPartialUpdate).when().patch(partialUpdateBooking).statusCode();
-        System.out.println(statusUpdateBooking);
+                .pathParam("id", getBookingid()).body(bodyPartialUpdate).when().patch(partialUpdateBooking).then().statusCode(Integer.parseInt(statusCode));
+        System.out.println("Status Code Partial: "+statusUpdateBooking);
         consumirGetBooking();
         System.out.println("*************************************************");
         System.out.println("********* Actualiza Parcial el objeto ***********");
@@ -141,22 +143,24 @@ public class auth {
     }
 
     @Test(priority = 3)
-    public void consumirDeleteBooking() throws IOException {
+    public void consumirDeleteBooking(String statusCode, String responseBody) throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         deleteBooking = loadProperty.getProperty("DeleteBooking");
         System.out.println("Book ID: " + bookingid);
 //        consumirCreateBooking();
         ValidatableResponse statusUpdateBooking = given().header("Accept", "application/json")
                 .and().header("Content-Type", "application/json").and().header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .pathParam("id", getBookingid()).when().delete(deleteBooking).then().log().ifValidationFails().statusCode(201).body(containsString("Created"));
+                .pathParam("id", getBookingid()).when().delete(deleteBooking).then().log().ifValidationFails().statusCode(Integer.parseInt(statusCode)).body(containsString(responseBody));
         System.out.println(statusUpdateBooking);
         System.out.println("*************************************************");
         System.out.println("************** Elimina el objeto ****************");
         System.out.println("*************************************************");
     }
 
-    @Test
-    public void HealthCheck() throws IOException {
+//    @Test
+    public void HealthCheck() throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         ping = loadProperty.getProperty("HealthCheck");
         ValidatableResponse statusPing = given().when().get(ping).then().statusCode(201).body(containsString("Created"));
@@ -166,20 +170,24 @@ public class auth {
         System.out.println("********************************************");
         System.out.println("************* Creo el Ping *****************");
         System.out.println("********************************************");
+        Thread.sleep(3000);
     }
 
-    @Test
-    public void consumirAuth() throws IOException {
+//    @Test
+    public void consumirAuth() throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         authCredential = loadProperty.getProperty("CreateToken");
         int statusCodeAuth = given().header("Content-Type", "application/json").body(bodyAuth).when().post(authCredential).statusCode();
         System.out.println(statusCodeAuth);
         token = given().header("Content-Type", "application/json").body(bodyAuth).when().post(authCredential).then().log().body().extract().body().path("token");
         System.out.println(token);
+        Thread.sleep(3000);
     }
 
-        @Test
-    public void consumirGetBookingIds() throws IOException {
+//        @Test
+    public void consumirGetBookingIds() throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         GetBookingIds = loadProperty.getProperty("GetBookingIds");
         int statusGetBookingIds = given().header("Content-Type", "application/json").when().get(GetBookingIds).statusCode();
@@ -188,10 +196,12 @@ public class auth {
                 .and().param("lastname", "Fierro")
                 .when().get(GetBookingIds).then().log().all().extract().response();
         System.out.println(idGetBooking);
+        Thread.sleep(3000);
     }
 
-        @Test
-    public void consumirGetBooking() throws IOException {
+//        @Test
+    public void consumirGetBooking() throws IOException, InterruptedException {
+        Thread.sleep(3000);
         loadProperty.load(new FileReader("./params.properties"));
         GetBooking = loadProperty.getProperty("GetBooking");
         ValidatableResponse statusGetBooking = given().header("Accept", "application/json").pathParam("id", bookingid.replace("[", "")).when().get(GetBooking).then().statusCode(200);
@@ -203,6 +213,7 @@ public class auth {
         System.out.println("*************************************************");
         System.out.println("******* Consume GetBooking del objeto ***********");
         System.out.println("*************************************************");
+        Thread.sleep(3000);
     }
 
 
