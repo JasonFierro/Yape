@@ -2,6 +2,7 @@ package seleniumgluecode;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class infoDefinition extends TestBase{
@@ -16,4 +17,5 @@ public class infoDefinition extends TestBase{
     public void ingresarTarjetaDeCreditoFechaDeExpiracionYValidarErrores(String tc, String te, String texto, String mensajeErrorTarjeta, String mensajeErrorTCExpiracion) throws Throwable {
         infoPage.finalizarBooking(texto,tc,te,mensajeErrorTarjeta,mensajeErrorTCExpiracion);
     }
+
 }

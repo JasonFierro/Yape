@@ -1,0 +1,49 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 8,
+        "name": "Crear Booking",
+        "description": "",
+        "id": "probar-api-testing-restful-booker-contiene-end-points-que-permiten-crear,-leer,-actualizar-y-eliminar-reservas;crear-booking;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 5387864900,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "Ejecutar el servicio CreateBooking y validar el codigo estado \"200\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 63
+                }
+              ],
+              "location": "crearBookDefinition.ejecutarElServicioCreateBookingYValidarElCodigoEstado(String)"
+            },
+            "matchedColumns": [
+              0
+            ],
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 3,
+            "name": "@Create"
+          }
+        ]
+      }
+    ],
+    "name": "Probar API Testing RestFul-Booker contiene end-points que permiten Crear, Leer, Actualizar y Eliminar reservas",
+    "description": "",
+    "id": "probar-api-testing-restful-booker-contiene-end-points-que-permiten-crear,-leer,-actualizar-y-eliminar-reservas",
+    "keyword": "Feature",
+    "uri": "booker.feature"
+  }
+]

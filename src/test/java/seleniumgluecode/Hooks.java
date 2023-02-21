@@ -53,7 +53,7 @@ public class Hooks {
         System.out.println("******************************************************");
     }
 
-    @After
+//    @After
     public void TearDown() {
         driver.quit();
     }

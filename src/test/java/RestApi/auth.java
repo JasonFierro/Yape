@@ -25,6 +25,16 @@ public class auth {
     String deleteBooking;
     String ping;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    String nombre;
+
     public String getBookingid() {
         return bookingid;
     }
@@ -74,13 +84,13 @@ public class auth {
             "}";
 
     @Test
-    public void consumirCreateBooking() throws IOException {
+    public void consumirCreateBooking(String statusCode) throws IOException {
         loadProperty.load(new FileReader("./params.properties"));
         CreateBooking = loadProperty.getProperty("CreateBooking");
         GetBooking = loadProperty.getProperty("GetBooking");
-        int statusCreateBooking = given().header("Accept", "application/json")
+        ValidatableResponse statusCreateBooking = given().header("Accept", "application/json")
                 .and().header("Content-Type", "application/json")
-                .body(bodyCreate).when().post(CreateBooking).statusCode();
+                .body(bodyCreate).when().post(CreateBooking).then().statusCode(Integer.parseInt(statusCode));
         System.out.println(statusCreateBooking);
         bookingid = given().header("Content-Type", "application/json")
                 .and().header("Accept", "application/json")
@@ -138,7 +148,7 @@ public class auth {
 //        consumirCreateBooking();
         ValidatableResponse statusUpdateBooking = given().header("Accept", "application/json")
                 .and().header("Content-Type", "application/json").and().header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .pathParam("id", getBookingid()).when().delete(deleteBooking).then().log().ifValidationFails().statusCode(201);
+                .pathParam("id", getBookingid()).when().delete(deleteBooking).then().log().ifValidationFails().statusCode(201).body(containsString("Created"));
         System.out.println(statusUpdateBooking);
         System.out.println("*************************************************");
         System.out.println("************** Elimina el objeto ****************");
@@ -184,7 +194,7 @@ public class auth {
     public void consumirGetBooking() throws IOException {
         loadProperty.load(new FileReader("./params.properties"));
         GetBooking = loadProperty.getProperty("GetBooking");
-        int statusGetBooking = given().header("Accept", "application/json").pathParam("id", bookingid.replace("[", "")).when().get(GetBooking).statusCode();
+        ValidatableResponse statusGetBooking = given().header("Accept", "application/json").pathParam("id", bookingid.replace("[", "")).when().get(GetBooking).then().statusCode(200);
         System.out.println(statusGetBooking);
         ResponseGetBooking = given().header("Accept", "application/json").pathParam("id", bookingid.replace("[", ""))
                 .when().get(GetBooking).then().log().all().body("firstname", containsString("Jason"))
