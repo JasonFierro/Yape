@@ -27,6 +27,72 @@ public class searchPage extends BasePage {
     By label_ok = By.xpath("//*[@text='OK']");
     By button_apply = By.xpath("//*[@resource-id='com.booking:id/group_config_apply_button']");
     By button_search = By.xpath("//*[@resource-id='com.booking:id/facet_search_box_cta']");
+    By button_sort = By.xpath("//*[@text='Sort']");
+    By button_filter = By.xpath("//*[@text='Filter']");
+    By button_map = By.xpath("//*[@text='Map']");
+    By label_sort_return = By.id("com.booking:id/touch_outside");
+    By label_filter_return = By.xpath("//*[@content-desc=\"Navigate up\"]");
+    By label_Your_budget = By.xpath("//*[@text='Your budget (for 5 nights)']");
+    By label_Popular_Filters = By.xpath("//*[@text='Popular Filters']");
+    By label_free_cancellation = By.xpath("//*[@text='Free cancellation \u2066(46)']");
+    By label_setFilter = By.xpath("//*[@text='Set your filters']");
+    By label_favorite = By.xpath("//*[@content-desc=\"Add to list\"]");
+    By label_share = By.xpath("//*[@content-desc=\"Share hotel\"]");
+    By label_share_share = By.id("com.booking:id/minimalist_share_header");
+    By label_share_close = By.id("com.booking:id/close_button");
+    By label_more_options = By.xpath("//*[@content-desc=\"More options\"]");
+    By label_more_options_saved = By.xpath("//*[@text=\"Saved\"]");
+    By label_more_options_cunrrency = By.xpath("//*[@text=\"Currency\"]");
+
+    public void favorito() throws Exception {
+        Thread.sleep(2000);
+        click(label_favorite);
+        Thread.sleep(2000);
+    }
+
+    public void compartirHotel() throws Exception {
+        Thread.sleep(2000);
+        click(label_share);
+        isDisplayed(label_share_share);
+        Thread.sleep(2000);
+        click(label_share_close);
+        Thread.sleep(2000);
+    }
+
+    public void masOpciones() throws Exception {
+        Thread.sleep(2000);
+        click(label_more_options);
+        isDisplayed(label_more_options_saved);
+        isDisplayed(label_more_options_cunrrency);
+        Thread.sleep(2000);
+    }
+
+    public void filtroOrdenar() throws Exception {
+        Thread.sleep(2000);
+        click(button_sort);
+        waitImplicit(label_sort_return);
+        click(label_sort_return);
+        Thread.sleep(2000);
+    }
+
+    public void filtroMap() throws Exception {
+        Thread.sleep(2000);
+        click(button_map);
+        Thread.sleep(2000);
+    }
+
+    public void filtro_filtrar() throws Exception {
+        Thread.sleep(2000);
+        click(button_filter);
+        waitImplicit(label_Your_budget);
+        isDisplayed(label_Your_budget);
+        isDisplayed(label_Popular_Filters);
+        isDisplayed(label_free_cancellation);
+        isDisplayed(label_setFilter);
+        Thread.sleep(2000);
+        click(label_filter_return);
+        Thread.sleep(2000);
+    }
 
     public void buscarCiudad(String ciudad) throws Exception {
         try {

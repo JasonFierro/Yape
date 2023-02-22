@@ -1,6 +1,6 @@
 package pom;
 
-import cucumber.api.java.en.Then;
+//import cucumber.api.java.en.Then;
 import io.appium.java_client.AppiumBy;
 import jdk.nashorn.internal.runtime.Context;
 import org.openqa.selenium.By;

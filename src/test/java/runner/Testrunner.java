@@ -1,8 +1,11 @@
 package runner;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+//import cucumber.api.CucumberOptions;
+//import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
+//import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
@@ -10,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/features/",
         glue = {"seleniumgluecode"},
         plugin = {"json:Report/Test/cucumber_report.json"},
-        tags = {"@prueba"}
+        tags = "@Exitoso"
 )
 public class Testrunner {
     // Para los reportes es necesario tener instalado NodeJS en su PC
@@ -18,8 +21,8 @@ public class Testrunner {
     public static void finish(){
         try {
             System.out.println("El reporte se esta generando");
-//            String [] cmd = {"cmd.exe","/c","npm run report"};
-//            Runtime.getRuntime().exec(cmd);
+            String [] cmd = {"cmd.exe","/c","npm run report"};
+            Runtime.getRuntime().exec(cmd);
             System.out.println("Reporte Generado satisfactoriamente!!!");
         }catch (Exception ex){
             ex.printStackTrace();

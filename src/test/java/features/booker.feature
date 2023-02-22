@@ -41,6 +41,14 @@ Feature: Probar API Testing RestFul-Booker contiene end-points que permiten Crea
       | statusCode | statusCodeDeleted | responseBody |
       | 200        | 201               | Created      |
 
+  @Delete
+    @api
+  Scenario Outline: Eliminar Booking sin ID
+    Then Ejecutar el servicio DeleteBooking sin id y validar el codigo estado "<statusCodeDeleted>" "<responseBody>"
+    Examples:
+      | statusCode | statusCodeDeleted | responseBody       |
+      | 200        | 405               | Method Not Allowed |
+
   @HealthCheck
     @api
   Scenario Outline: HealthCheck Booking

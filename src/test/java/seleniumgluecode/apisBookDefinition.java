@@ -1,8 +1,10 @@
 package seleniumgluecode;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
+//import cucumber.api.PendingException;
+//import cucumber.api.java.en.And;
+//import cucumber.api.java.en.Given;
+
+import io.cucumber.java.en.*;
 
 import java.io.IOException;
 
@@ -30,11 +32,16 @@ public class apisBookDefinition extends TestBase{
 
     @Given("^Ejecutar el servicio HealthCheck y validar el codigo estado \"([^\"]*)\" \"([^\"]*)\"$")
     public void ejecutarElServicioHealthCheckYValidarElCodigoEstado(String statusCode, String responseBody) throws Throwable {
-//        auth.HealthCheck(statusCode,responseBody);
+        auth.HealthCheck(statusCode,responseBody);
     }
 
     @Given("^Ejecutar el servicio Auth y validar el codigo estado \"([^\"]*)\"$")
     public void ejecutarElServicioAuthYValidarElCodigoEstado(String statusCode) throws Throwable {
-//        auth.consumirAuth(statusCode);
+        auth.consumirAuth(statusCode);
+    }
+
+    @Then("Ejecutar el servicio DeleteBooking sin id y validar el codigo estado {string} {string}")
+    public void ejecutarElServicioDeleteBookingSinIdYValidarElCodigoEstado(String statusCodeDeleted, String responseBody) throws IOException, InterruptedException {
+        auth.consumirDeleteBookingSinID(statusCodeDeleted,responseBody);
     }
 }
